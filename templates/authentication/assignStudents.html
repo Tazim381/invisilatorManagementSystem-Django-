@@ -1,0 +1,38 @@
+{% load static%}
+<html>
+    
+        <head>
+            <link rel="stylesheet " type="text/css" href="{% static 'signup.css' %}" />
+            <style>
+                .selectItem{
+                    padding:10px;
+                }
+                input{
+                    padding:10px;
+                }
+            </style>
+        </head>
+
+    <body>
+    <h1>Fill up the form </h1>
+    <form method="POST">
+   {%csrf_token%}
+    <label>Year</label>
+    <select name="yr" required class="selectItem">
+        <option selected disabled >select year</option>
+        <option value="5">Masters</option>
+        <option value="4">4th Year</option>
+        <option value="3">3rd Year</option>
+        <option value="2">2nd Year</option>
+        <option value="1">1st Year</option>
+    </select>
+    
+    <label>Number of student</label>
+    <input type="number" name="numberofstudent" placeholder="Enter number of student" required>
+
+    <button type="submit">Create</button>
+
+    <form>
+    </body>
+
+</html>

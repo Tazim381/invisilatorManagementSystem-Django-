@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <style>
+      .body {
+      }
+      .chairman {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        row-gap: 30px;
+        padding: 20px;
+        margin: auto;
+      }
+      button {
+        padding: 10px;
+        background-color: black;
+        font-size: 20px;
+        border: 2px solid green;
+        box-shadow: 10px 10px 5px lightblue;
+      }
+      a {
+        color: white;
+        text-decoration: none;
+      }
+      .teacherList {
+        border: 1px solid black;
+        width: 25%;
+        padding: 20px;
+        background-color: black;
+        color: white;
+        box-shadow: 10px 10px 5px lightblue;
+        margin: auto;
+      }
+      .teacherListParent {
+        display: flex;
+        column-gap: 40px;
+        row-gap: 40px;
+        flex-wrap: wrap;
+      }
+      h1 {
+        border: 3px solid lightblue;
+        width: 20%;
+        padding: 10px;
+        margin: auto;
+        margin-top: 80px;
+        margin-bottom: 30px;
+        box-shadow: 10px 10px 5px lightblue;
+      }
+      .header {
+        color: lightblue;
+      }
+      button:hover{
+        cursor:pointer;
+        background-color:rgba(0, 0, 0, 0.7);
+      }
+    </style>
+  </head>
+  <body class="body">
+    <div class="chairman">
+      <button><a href="/createexamcommittee">Create Exam Committee</a></button>
+      <button><a href="/assignStudents">Assign Students</a></button>
+      <button><a href="/showexamcommitteehome">Show Exam Committee</a></button>
+    </div>
+    <h1>Teachers List</h1>
+    <div class="teacherListParent">
+      {%for teacher in teachers%}
+      <div class="teacherList">
+        <p><b class="header">Teacher Id:</b> {{teacher.teacherID }}</p>
+        <p>
+          <b class="header">Name: </b>{{teacher.firstName}} {{teacher.lastName}}
+        </p>
+        <p><b class="header">Email: </b>{{teacher.email}}</p>
+      </div>
+      {%endfor%}
+    </div>
+  </body>
+</html>
