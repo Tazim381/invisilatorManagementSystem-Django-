@@ -8,6 +8,7 @@ urlpatterns = [
     path('signin', views.signin, name="signin"),
     path('signout', views.signout, name="singout"),
     path('assignStudents', views.assignStudents, name="assignStudents"),
+    path('teachersList', views.teachersList, name="teachersList"),
     path('createexamcommittee',views.createExamCommittee, name="createexamcommittee"),
     path('showexamcommitteehome',views.showExamCommitteeHome, name="showexamcommitteehome"),
     path('showexamcommittee1',views.showExamCommittee1, name="showexamcommittee1"),

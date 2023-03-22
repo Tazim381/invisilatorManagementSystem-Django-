@@ -143,3 +143,9 @@ def showExamCommittee5(request):
     examcommittee=teacher.objects.filter(isCommittee=5)
     examcommittee5={'examcommittee':examcommittee}
     return render(request,"authentication/showExamCommittee.html",examcommittee5)
+
+
+def teachersList(request):
+    teachers = teacher.object.all()
+    teachers ={'teachers':teachers}
+    return render(request,"authentication/teachersList.html",teachers)
