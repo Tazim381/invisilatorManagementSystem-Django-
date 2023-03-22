@@ -1,0 +1,40 @@
+<!-- @format -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'showTeacherList.css' %}" />
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <h1>All Teachers List</h1>
+      <div class="user">
+        {%for teacher in teachers%}
+        <div class="username">
+          <div class="profile_description">
+            <img
+              class="profile_picture"
+              src="{% static '/images/teacherCartoon.jpg' %}"
+              alt=""
+            />
+            <h2>{{teacher.userName}}</h2>
+          </div>
+          <div class="profile_data">
+            <h3>Teacher ID: {{teacher.teacherID}}</h3>
+            <h3>Name: {{teacher.firstName}}</h3>
+            <h3>Email : {{teacher.email}}</h3>
+            <h3>Exam Committee No : {{teacher.isCommittee}}</h3>
+            <h3>Head Of ExamCommittee: {{teacher.isHeadOfCommittee}}</h3>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+    </main>
+  </body>
+</html>

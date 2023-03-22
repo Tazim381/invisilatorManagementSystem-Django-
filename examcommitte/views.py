@@ -146,6 +146,6 @@ def showExamCommittee5(request):
 
 
 def teachersList(request):
-    teachers = teacher.object.all()
+    teachers = teacher.objects.all()
     teachers ={'teachers':teachers}
-    return render(request,"authentication/teachersList.html",teachers)
+    return render(request,"authentication/showTeachersList.html",teachers)

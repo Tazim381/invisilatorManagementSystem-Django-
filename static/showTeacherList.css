@@ -1,0 +1,35 @@
+.user {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 15px;
+  column-gap: 10px;
+}
+.username {
+  margin: 10px 20px;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 10px 10px 5px lightblue;
+}
+.profile_description {
+  text-align: center;
+  margin-top: 10px;
+}
+.profile_picture {
+  height: 30%;
+  width: 30%;
+  border-radius: 50%;
+}
+.profile_data {
+  margin-left: 50px;
+}
+h1 {
+  border: 3px solid lightblue;
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 60px;
+  box-shadow: 10px 10px 5px lightblue;
+  text-align: center;
+}
