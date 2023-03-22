@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Invigilation Management System</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'footer.css' %}" />
+    <link
+      href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-image: url("{% static "/images/bg.jpg" %}");
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="{% static '/images/INV3.JPG' %}" alt="IMS Logo" />
+      </div>
+      <nav class="nav">
+        <button><a class="nav-btn" href="/#">Home</a></button>
+        <button><a class="nav-btn" href="/123">Teachers List</a></button>
+        <button><a class="nav-btn" href="/signin">Sign In</a></button>
+        <button><a class="nav-btn" href="/signup">Register</a></button>
+      </nav>
+    </header>
+    <main>
+      <div class="base__display">
+        <div class="slider">
+          <div class="slides">
+            <img src="{% static '/images/image1.gif' %}" />
+          </div>
+        </div>
+        <div class="news">
+          <h2>Latest News</h2>
+          <ul>
+            <li>Upcoming exam on April 10th</li>
+            <li>New schedule for May exams</li>
+            <li>Reminder: please arrive 30 minutes early for your exam</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </body>
+  <footer class="footer-distributed">
+    <div class="footer-left">
+      <h3>INVIGILATION<span> MANAGEMENT</span></h3>
+
+      <p class="footer-links">
+        <a href="#">Home</a>
+        ·
+        <a href="#">Blog</a>
+        ·
+        <a href="#">About</a>
+        ·
+        <a href="#">Contact</a>
+      </p>
+
+      <p class="footer-company-name">Invigilation © 2023</p>
+
+      <div class="footer-icons">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-github"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <p>Contact Us</p>
+
+      <form action="#" method="post">
+        <input type="text" name="email" placeholder="Email" />
+        <textarea name="message" placeholder="Message"></textarea>
+        <button>Send</button>
+      </form>
+    </div>
+  </footer>
+</html>

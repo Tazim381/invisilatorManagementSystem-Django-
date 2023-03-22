@@ -12,7 +12,7 @@ from .models import  teacher,student
 # Create your views here.
 
 def home(request):
-    return render(request, "authentication/index.html")
+    return render(request, "authentication/index1.html")
 
 
 def signup(request):
