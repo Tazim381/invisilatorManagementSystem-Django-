@@ -15,7 +15,5 @@ urlpatterns = [
     path('showexamcommittee2',views.showExamCommittee2, name="showexamcommittee2"),
     path('showexamcommittee3',views.showExamCommittee3, name="showexamcommittee3"),
     path('showexamcommittee4',views.showExamCommittee4, name="showexamcommittee4"),
-    path('showexamcommittee5',views.showExamCommittee5, name="showexamcommittee5"),
-   
-   
+    path('showexamcommittee5',views.showExamCommittee5, name="showexamcommittee5"),  
 ]

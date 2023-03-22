@@ -8,11 +8,12 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from .models import  teacher,student
+from django.db.models import Q
 
 # Create your views here.
 
 def home(request):
-    return render(request, "authentication/index1.html")
+    return render(request, "authentication/index.html")
 
 
 def signup(request):
@@ -72,6 +73,10 @@ def signin(request):
 
         if user is not None:
             login(request, user)
+            headOfCommittee1= teacher.objects.filter(Q(isCommittee='1')& Q(isHeadOfCommittee="True"))
+            headOfCommittee1 ={'headOfCommittee1':headOfCommittee1}
+            if(headOfCommittee1):
+                return render(request,"authentication/createRoutine.html",headOfCommittee1)
             fname = user.first_name
             return render(request, "authentication/index.html", {'fname': fname})
         else:

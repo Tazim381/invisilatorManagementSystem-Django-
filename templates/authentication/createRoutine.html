@@ -1,0 +1,12 @@
+<html>
+  <head> </head>
+  <body>
+    {% for teacher in headOfCommittee1%}
+    <h1>
+      Hello {{teacher.firstName}} You are in Exam Committe 1 that is for first
+      year students
+    </h1>
+    <h1>{{teacher.userName}} {{teacher.isCommittee}}</h1>
+    {%endfor%}
+  </body>
+</html>
