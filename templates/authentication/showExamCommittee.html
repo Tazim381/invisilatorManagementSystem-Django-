@@ -1,34 +1,11 @@
+{% load static %}
 <html>
   <head>
-    <style>
-      .teacherList {
-        border: 1px solid black;
-        width: 25%;
-        padding: 20px;
-        background-color: black;
-        color: white;
-        box-shadow: 10px 10px 5px lightblue;
-        margin: auto;
-      }
-      .teacherListParent {
-        display: flex;
-        column-gap: 40px;
-        row-gap: 40px;
-        flex-wrap: wrap;
-      }
-      h1 {
-        border: 3px solid lightblue;
-        width: 40%;
-        padding: 10px;
-        margin: auto;
-        margin-top: 80px;
-        margin-bottom: 30px;
-        box-shadow: 10px 10px 5px lightblue;
-      }
-      .header {
-        color: lightblue;
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'showExamCommittee.css' %}"
+    />
   </head>
   <body>
     <h1>Exam Committee Members List</h1>

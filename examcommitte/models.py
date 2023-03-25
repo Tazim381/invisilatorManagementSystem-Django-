@@ -24,3 +24,12 @@ class student(models.Model):
     numberOfStudent =  models.IntegerField()
     def __str__(self):
      return f'{self.year}'
+ 
+class course(models.Model):
+    courseTitle = models.CharField(max_length=255)
+    courseCode = models.CharField(max_length=255)
+    courseCredit = models.CharField(max_length=255)
+    courseTeacher = models.CharField(max_length=255)
+    externalTeacher = models.CharField(max_length=255)
+    def __str__(self):
+     return f'{self.courseTitle}'

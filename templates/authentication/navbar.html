@@ -1,0 +1,21 @@
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'footer.css' %}" />
+<header>
+  <div class="logo">
+    <img src="{% static '/images/INV3.JPG' %}" alt="IMS Logo" />
+    <button><a class="nav-btn" href="/">Home</a></button>
+    <button>
+      <a class="nav-btn" href="/teachersList">Teachers List</a>
+    </button>
+    <button>
+      <a class="nav-btn" href="/invisilatorsList">Invisilators List</a>
+    </button>
+  </div>
+  <nav class="nav">
+    <button><a class="nav-btn" href="/signin">Sign In</a></button>
+    <button><a class="nav-btn" href="/signup">Register</a></button>
+  </nav>
+</header>

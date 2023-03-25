@@ -7,7 +7,7 @@ from django.contrib.auth.models import User,Group
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from .models import  teacher,student
+from .models import  teacher,student,course
 from django.db.models import Q
 
 # Create your views here.
@@ -154,3 +154,22 @@ def teachersList(request):
     teachers = teacher.objects.all()
     teachers ={'teachers':teachers}
     return render(request,"authentication/showTeachersList.html",teachers)
+
+
+def createCourse(request):
+    teachers = teacher.objects.all()
+    teachers ={'teachers':teachers}
+    if request.method == "POST":
+        courseCode = request.POST.get('courseCode')
+        courseTitle = request.POST.get('courseTitle')
+        courseCredit = request.POST.get('courseCredit')
+        courseTeacher = request.POST.get('courseTeacher')
+        externalTeacher = request.POST.get('externalTeacher')
+        courses = course()
+        courses.courseCode = courseCode
+        courses.courseTitle = courseTitle
+        courses.courseCredit = courseCredit
+        courses.courseTeacher = courseTeacher
+        courses.externalTeacher = externalTeacher
+        courses.save()
+    return render(request,"authentication/createCourse.html",teachers)

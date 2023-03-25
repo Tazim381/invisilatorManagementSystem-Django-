@@ -1,0 +1,76 @@
+{% load static %}
+<html>
+  <head>
+    <title>Singup page</title>
+    <link rel="stylesheet " type="text/css" href="{% static 'signup.css' %}" />
+    <style>
+      input {
+        padding: 10px;
+      }
+      label {
+        font-size: 20px;
+      }
+      button {
+        color: white;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Create Course</h1>
+    <p>Please fill out this form with the required information</p>
+
+    <form action="/createCourse" method="post">
+      {% csrf_token %}
+      <label for="">Course Code </label>
+      <input
+        type="text"
+        id="courseCode"
+        name="courseCode"
+        placeholder="Enter Course Code "
+        required
+      />
+      <br />
+
+      <label for="">Course Title</label>
+      <input
+        type="text"
+        id="courseTitle"
+        name="courseTitle"
+        placeholder="Enter Course Title"
+        required
+      />
+      <br />
+
+      <label for="">Course Credit </label>
+      <input
+        type="text"
+        id="courseCredit"
+        name="courseCredit"
+        placeholder="Enter Course Credit"
+        required
+      />
+      <br />
+      <label>Course Teacher </label>
+      <select name="courseTeacher" class="selectItem">
+        <option selected disabled>Select Course Teacher</option>
+        {%for teacher in teachers%}
+        <option value="{{teacher.userName}}">{{teacher.firstName}}</option>
+        {%endfor%}
+      </select>
+      <br />
+      <label>External Teacher </label>
+      <select name="externalTeacher" class="selectItem">
+        <option selected disabled>Select External Teacher</option>
+        {%for teacher in teachers%}
+        <option value="{{teacher.userName}}">{{teacher.firstName}}</option>
+        {%endfor%}
+      </select>
+      <br />
+
+      <button type="submit">Create</button>
+    </form>
+  </body>
+</html>
