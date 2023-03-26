@@ -33,3 +33,8 @@ class course(models.Model):
     externalTeacher = models.CharField(max_length=255)
     def __str__(self):
      return f'{self.courseTitle}'
+class createdExamCommittee(models.Model):
+    examCommitteeYear = models.CharField(max_length=255)
+    examCommitteeStatus = models.CharField(max_length =255)
+    def __str__(self):
+     return f'{self.examCommitteeYear}'

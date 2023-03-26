@@ -7,7 +7,7 @@ from django.contrib.auth.models import User,Group
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from .models import  teacher,student,course
+from .models import  teacher,student,course,createdExamCommittee
 from django.db.models import Q
 
 # Create your views here.
@@ -117,6 +117,20 @@ def createExamCommittee(request):
         if(teacher.objects.filter(isCommittee = year).exists()):
             messages.error(request, "Exam Committee is already created . Please create another exam committee")
             return redirect('createexamcommittee')
+        createCommittee = createdExamCommittee()
+        if year == "1":
+            createCommittee.examCommitteeYear ="First Year"
+            createCommittee. examCommitteeStatus="Created"
+        if year == "2":
+            createCommittee.examCommitteeYear ="Second Year"
+            createCommittee. examCommitteeStatus="Created"
+        if year == "3":
+            createCommittee.examCommitteeYear ="Third Year"
+            createCommittee. examCommitteeStatus="Created"
+        if year == "4":
+            createCommittee.examCommitteeYear ="Fourth Year"
+            createCommittee. examCommitteeStatus="Created"
+        createCommittee.save()
         teacher1.isCommittee=year
         teacher1.isHeadOfCommittee="True"
         teacher2.isCommittee=year
@@ -128,7 +142,7 @@ def createExamCommittee(request):
         ob.user_set.add(user1)
         ob.user_set.add(user2)
         ob.user_set.add(user3)
-    
+        
     return render(request,"authentication/createExamCommittee.html",teachers)
 
 def showExamCommitteeHome(request):
@@ -184,3 +198,9 @@ def createCourse(request):
         courses.save()
         messages.success(request, "sussessfully created course")
     return render(request,"authentication/createCourse.html",teachers)
+
+
+def createdexamcommittee(request):
+    createdCommittee =  createdExamCommittee.objects.all()
+    createdCommittee = {'createdCommittee':createdCommittee}
+    return render(request,"authentication/createdExamCommittee.html",createdCommittee)

@@ -16,7 +16,9 @@ urlpatterns = [
     path('showexamcommittee3',views.showExamCommittee3, name="showexamcommittee3"),
     path('showexamcommittee4',views.showExamCommittee4, name="showexamcommittee4"),
     path('showexamcommittee5',views.showExamCommittee5, name="showexamcommittee5"), 
-    path('createCourse',views.createCourse, name="createCourse"),  
+    path('createCourse',views.createCourse, name="createCourse"), 
+    path('createdExamCommittee',views.createdexamcommittee, name="createdExamComiittee"),  
+    
     
     
 ]
