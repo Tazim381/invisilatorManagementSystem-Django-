@@ -25,7 +25,7 @@ def signup(request):
         email = request.POST.get('email')
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
-
+        
         if User.objects.filter(username=username):
             messages.error(request, "Username already exist! Please try some other username.")
             return redirect('home')
@@ -52,7 +52,7 @@ def signup(request):
         user.lastName = lname
         user.email = email
         user.password =pass1
-        user.isCommittee ="False"
+        user.isCommittee = 0
         user.isHeadOfCommittee ="False"
         user.save()
 
@@ -111,6 +111,12 @@ def createExamCommittee(request):
         teacher1 = teacher.objects.get(email=request.POST['tea1'])
         teacher2 = teacher.objects.get(email=request.POST['tea2'])
         teacher3 = teacher.objects.get(email=request.POST['tea3'])
+        if(int(teacher1.isCommittee) | int(teacher2.isCommittee) | int(teacher3.isCommittee)):
+            messages.error(request, "Teacher is already in another committee. Please try another teacher")
+            return redirect('createexamcommittee')
+        if(teacher.objects.filter(isCommittee = year).exists()):
+            messages.error(request, "Exam Committee is already created . Please create another exam committee")
+            return redirect('createexamcommittee')
         teacher1.isCommittee=year
         teacher1.isHeadOfCommittee="True"
         teacher2.isCommittee=year
@@ -118,7 +124,6 @@ def createExamCommittee(request):
         teacher1.save()
         teacher2.save()
         teacher3.save()
-       
         ob=Group.objects.get(name=committee)
         ob.user_set.add(user1)
         ob.user_set.add(user2)
