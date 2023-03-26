@@ -1,7 +1,7 @@
 {% load static %}
 <html>
   <head>
-    <title>Singup page</title>
+    <title>Create Course</title>
     <link rel="stylesheet " type="text/css" href="{% static 'signup.css' %}" />
     <style>
       input {
@@ -19,6 +19,22 @@
     </style>
   </head>
   <body>
+    {% for message in messages %}
+    <div
+      class="alert alert-{{ message.tags }} alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>Message:</strong> {{ message }}
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
     <h1>Create Course</h1>
     <p>Please fill out this form with the required information</p>
 

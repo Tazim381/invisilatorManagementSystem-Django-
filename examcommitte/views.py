@@ -165,6 +165,11 @@ def createCourse(request):
         courseCredit = request.POST.get('courseCredit')
         courseTeacher = request.POST.get('courseTeacher')
         externalTeacher = request.POST.get('externalTeacher')
+       
+        if(course.objects.filter(courseCode =courseCode).exists()):
+            messages.error(request, "Course already created. Please Try another")
+            return redirect('createCourse')
+       
         courses = course()
         courses.courseCode = courseCode
         courses.courseTitle = courseTitle
@@ -172,4 +177,5 @@ def createCourse(request):
         courses.courseTeacher = courseTeacher
         courses.externalTeacher = externalTeacher
         courses.save()
+        messages.success(request, "sussessfully created course")
     return render(request,"authentication/createCourse.html",teachers)
