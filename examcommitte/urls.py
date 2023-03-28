@@ -21,4 +21,7 @@ urlpatterns = [
     path('createRoutine1',views.createRoutine1, name="createRoutine1"),  
     path('createRoutine11/<int:id>/<int:id2>/',views.createRoutine11,name='createRoutine11'),
     path('showRoutine1',views.showRoutine1, name="showRoutine1"), 
+     path('createRoutine2',views.createRoutine2, name="createRoutine2"),  
+    path('createRoutine22/<int:id>/<int:id2>/',views.createRoutine22,name='createRoutine22'),
+    path('showRoutine2',views.showRoutine2, name="showRoutine2"), 
 ]

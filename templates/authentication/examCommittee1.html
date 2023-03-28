@@ -1,12 +1,13 @@
+{% load static %}
 <html>
-  <head> </head>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'chairman.css' %}" />
+  </head>
   <body>
-    {% for teacher in headOfCommittee1%}
     <h1>
-      Hello {{teacher.firstName}} You are in Exam Committe 1 that is for first
-      year students
+      Hello {{headOfCommittee1.firstName}} You are Head of First Year Exam
+      Committee
     </h1>
-    {%endfor%}
     <button><a href="/createRoutine1">Create Routine</a></button>
     <button><a href="/showRoutine1">Show Routine</a></button>
   </body>
