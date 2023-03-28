@@ -1,0 +1,33 @@
+.table {
+  padding-top: 50px;
+}
+.my_table {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 500px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.my_table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: center;
+}
+.my_table th,
+.my_table td {
+  padding: 12px 15px;
+}
+.my_table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.my_table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+.my_table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+.my_table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}

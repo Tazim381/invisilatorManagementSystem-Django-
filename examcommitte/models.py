@@ -38,3 +38,24 @@ class createdExamCommittee(models.Model):
     examCommitteeStatus = models.CharField(max_length =255)
     def __str__(self):
      return f'{self.examCommitteeYear}'
+ 
+class Semister(models.Model):
+    semNo=models.IntegerField()
+    def __str__(self):
+        return f'{self.semNo}'
+class routine(models.Model):
+    semester=models.CharField(max_length=255)
+    courseCode =models.ForeignKey(course,on_delete=models.CASCADE,null=True)
+    date=models.DateField(null=True)
+    start=models.TimeField(null=True)
+    end=models.TimeField(null=True)
+    teachers=models.ManyToManyField(teacher)
+    def __str__(self):
+        return f'{self.courseCode}'
+
+class teacherCount(models.Model):
+    firstName = models.CharField(max_length=25)
+    lastName = models.CharField(max_length=25)
+    count = models.IntegerField(default=0)
+    def __str__(self):
+        return f'{self.firstName}'

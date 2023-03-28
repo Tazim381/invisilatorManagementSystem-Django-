@@ -7,7 +7,7 @@ from django.contrib.auth.models import User,Group
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from .models import  teacher,student,course,createdExamCommittee
+from .models import  teacher,student,course,createdExamCommittee,Semister,routine,teacherCount
 from django.db.models import Q
 
 # Create your views here.
@@ -76,7 +76,8 @@ def signin(request):
             headOfCommittee1= teacher.objects.filter(Q(isCommittee='1')& Q(isHeadOfCommittee="True"))
             headOfCommittee1 ={'headOfCommittee1':headOfCommittee1}
             if(headOfCommittee1):
-                return render(request,"authentication/createRoutine.html",headOfCommittee1)
+                courses= course.objects.all()
+                return render(request,"authentication/examCommittee1.html",headOfCommittee1)
             fname = user.first_name
             return render(request, "authentication/index.html", {'fname': fname})
         else:
@@ -204,3 +205,59 @@ def createdexamcommittee(request):
     createdCommittee =  createdExamCommittee.objects.all()
     createdCommittee = {'createdCommittee':createdCommittee}
     return render(request,"authentication/createdExamCommittee.html",createdCommittee)
+
+
+def createRoutine1(request):
+    courses = course.objects.filter(courseCode__gte ='100',courseCode__lte = '199')
+    courses={'courses':courses}
+    if request.method=='POST':
+        Courses=course.objects.get(courseCode=request.POST['course'])
+        date=request.POST['date']
+        start=request.POST['start']
+        end=request.POST['end']
+        students=student.objects.get(year=request.POST['semister'])
+        semister=Semister(semNo=request.POST['semister'])
+        routines=routine(courseCode=Courses,date=date,start=start,end=end)
+        routines.semester= semister
+        routines.save()
+        response='/createRoutine11/'+str(Courses.courseCode)+'/'+str(students.numberOfStudent)
+        return redirect(response)
+    return render(request,"authentication/createRoutine1.html",courses)
+
+def createRoutine11(request,id,id2):
+    id2=int(id2)
+    eb= teacher.objects.all()
+    cont={
+        'ob':range(int(id2/12)),
+        'eb':eb
+    }
+    if request.method=='POST':
+        co=course.objects.get(courseCode=int(id))
+        for o in range(int(id2/12)):
+            st="so"+str(o)
+            oo=teacher.objects.get(userName=request.POST.get(st))
+            rou=routine.objects.get(courseCode=co)
+            rou.teachers.add(oo)
+           
+            if(teacherCount.objects.filter(firstName = oo.firstName).exists()):
+                 count = teacherCount.objects.get(firstName = oo.firstName)
+                 count.count = count.count+1
+            else:  
+                count = teacherCount() 
+                count.firstName = oo.firstName
+                count.lastName = oo.lastName
+                count.count = count.count+1
+            count.save()
+        rou=routine.objects.filter(courseCode=co)
+        response='/'
+        return redirect(response)
+    
+    return render(request,'authentication/createRoutine11.html',cont)
+
+def showRoutine1(request):
+    routines = routine.objects.filter(semester="1")
+    for routin in routines:
+        for teacher in routin.teachers.all():
+            print(teacher)
+    return render(request,'authentication/showRoutine1.html',{'routines':routines})
+

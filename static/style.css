@@ -96,3 +96,8 @@ main {
 .logo button {
   border: none;
 }
+
+* {
+  margin: 0;
+}
+

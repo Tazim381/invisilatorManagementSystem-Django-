@@ -13,6 +13,28 @@
       body {
         background-image: url("{% static "/images/bg.jpg" %}");
       }
+      .countDown {
+        background-color: rgba(10,10 , 10, 0.823);
+        background-blend-mode: multiply;
+        background-image: url("{% static "/images/counter.jpg" %}");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        color: white;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .time {
+        font-weight: bold;
+        font-size: 60px;
+      }
+      #Time_Countdown {
+        font-size: 50px;
+      }
+      .container {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -50,6 +72,16 @@
       </div>
     </main>
   </body>
+  <section>
+    <div class="countDown">
+      <div class="container">
+        <h1 class="time">Tutorial Week Starts In </h1>
+        <p id="Time_Countdown"></p>
+      </div>
+    </div>
+    <script src="{% static '/count.js' %}"></script>
+  </section>
+
   <footer class="footer-distributed">
     <div class="footer-left">
       <h3>INVIGILATION<span> MANAGEMENT</span></h3>

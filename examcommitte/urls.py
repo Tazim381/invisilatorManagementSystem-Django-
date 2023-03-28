@@ -18,7 +18,7 @@ urlpatterns = [
     path('showexamcommittee5',views.showExamCommittee5, name="showexamcommittee5"), 
     path('createCourse',views.createCourse, name="createCourse"), 
     path('createdExamCommittee',views.createdexamcommittee, name="createdExamComiittee"),  
-    
-    
-    
+    path('createRoutine1',views.createRoutine1, name="createRoutine1"),  
+    path('createRoutine11/<int:id>/<int:id2>/',views.createRoutine11,name='createRoutine11'),
+    path('showRoutine1',views.showRoutine1, name="showRoutine1"), 
 ]

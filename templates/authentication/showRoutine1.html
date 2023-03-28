@@ -16,19 +16,27 @@
     <div class="table">
       <table class="my_table">
         <caption>
-          <h3>Created Examcommittee List</h3>
+          <h3>Routine For First Year Students</h3>
         </caption>
         <thead>
           <tr>
-            <th>Exam Committee No.</th>
-            <th>Created</th>
+            <th>Course Code</th>
+            <th>Course Title</th>
+            <th>Course Credit</th>
+            <th>Exam Date</th>
+            <th>Start time</th>
+            <th>End Time</th>
           </tr>
         </thead>
         <tbody>
-          {% for Committe in createdCommittee %}
+          {%for routine in routines%}
           <tr>
-            <td>{{Committe.examCommitteeYear}}</td>
-            <td>Created</td>
+            <td>{{routine.courseCode.courseCode}}</td>
+            <td>{{routine.courseCode.courseTitle}}</td>
+            <td>{{routine.courseCode.courseCredit}}</td>
+            <td>{{routine.date}}</td>
+            <td>{{routine.start}}</td>
+            <td>{{routine.end}}</td>
           </tr>
           {% endfor %}
         </tbody>

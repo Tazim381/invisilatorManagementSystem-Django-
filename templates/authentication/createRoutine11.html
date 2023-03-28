@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Create committe</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      form > * {
+        padding: 10px;
+        width: 300px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="POST">
+      {%csrf_token%} {%for o in ob%}
+      <select name="so{{o}}">
+        <option selected disabled></option>
+        {%for i in eb%}
+        <option value="{{i.userName}}">{{i.firstName}}</option>
+        {%endfor%}
+      </select>
+      {%endfor%}
+      <button type="submit">Create</button>
+    </form>
+  </body>
+</html>
