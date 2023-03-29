@@ -1,0 +1,48 @@
+{% load static %}
+<html>
+    <head>
+        <link
+      rel="stylesheet "
+      type="text/css"
+      href="{% static 'createdExamCommittee.css' %}"
+    />
+    </head>
+    <body>
+        <div>
+        <h1>Profile </h1>
+        <h1>User Name:  {{teachers.firstName}} </h1>
+        <h2>Name : {{teachers.firstName}} {{teachers.lastName}}</h1>
+        <h2>Email : {{teachers.email}}</h2>
+        </div>
+        <div>
+            <div class="table">
+                <table class="my_table">
+                  <caption>
+                    <h3>Your invisilation date</h1>
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th>Course Code</th>
+                      <th>Course Title</th>
+                      <th>Course Credit</th>
+                      <th>Exam Date</th>
+                      <th>Start time</th>
+                      <th>End Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {%for routine in routines%}
+                    <tr>
+                      <td>{{routine.courseCode.courseCode}}</td>
+                      <td>{{routine.courseCode.courseTitle}}</td>
+                      <td>{{routine.courseCode.courseCredit}}</td>
+                      <td>{{routine.date}}</td>
+                      <td>{{routine.start}}</td>
+                      <td>{{routine.end}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+    </body>
+</html>

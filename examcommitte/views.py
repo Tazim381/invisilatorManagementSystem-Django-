@@ -105,8 +105,14 @@ def signin(request):
                 courses= course.objects.all()
                 return render(request,"authentication/examCommittee4.html",{'headOfCommittee4':headOfCommittee4})
             
-            fname = user.first_name
-            return render(request, "authentication/index.html", {'fname': fname})
+            routines = routine.objects.filter(teachers= teachers)
+            for routin in routines:
+                    print(routin.date)
+            teachers ={
+                'teachers':teachers,
+                'routines':routines
+            }
+            return render(request, "authentication/teacherPage.html",teachers)
         else:
             messages.error(request, "Bad credentials")
             
@@ -433,9 +439,6 @@ def createRoutine33(request,id,id2):
 
 def showRoutine3(request):
     routines = routine.objects.filter(semester="3")
-    for routin in routines:
-        for teacher in routin.teachers.all():
-            print(teacher)
     return render(request,'authentication/showRoutine3.html',{'routines':routines})
 
 
@@ -502,11 +505,25 @@ def createRoutine44(request,id,id2):
 
 def showRoutine4(request):
     routines = routine.objects.filter(semester="4")
-    for routin in routines:
-        for teacher in routin.teachers.all():
-            print(teacher)
     return render(request,'authentication/showRoutine4.html',{'routines':routines})
 
 def invisilatorsList(request):
     invisilators = teacherCount.objects.all()
     return render(request,"authentication/invisilatorList.html",{'invisilators':invisilators})
+
+def examRoutine(request):
+    firstYear = routine.objects.filter(semester="1")
+    secondYear = routine.objects.filter(semester="2")
+    thirdYear = routine.objects.filter(semester="3")
+    fourthYear = routine.objects.filter(semester="4")
+    allYear = {
+        'firstYear':firstYear,
+        'secondYear': secondYear,
+        'thirdYear':thirdYear,
+        'fourthYear':fourthYear
+    }
+    return render(request, "authentication/examRoutine.html", allYear)
+
+def showTeachersDutyList(request):
+    dutyList = teacherCount.objects.all()
+    return render(request,"authentication/showTeachersDutyList.html",{'dutyList':dutyList})

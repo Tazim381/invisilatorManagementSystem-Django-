@@ -31,5 +31,6 @@ urlpatterns = [
     path('createRoutine44/<int:id>/<int:id2>/',views.createRoutine44,name='createRoutine44'),
     path('showRoutine4',views.showRoutine4, name="showRoutine4"),
     path('invisilatorsList',views.invisilatorsList, name="invisilatorsList"),
-
+    path('examRoutine',views.examRoutine, name="examRoutine"),
+    path('showTeachersDutyList',views.showTeachersDutyList, name="showTeachersDutyList"),
 ]

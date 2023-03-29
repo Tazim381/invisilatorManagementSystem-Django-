@@ -1,0 +1,25 @@
+<html>
+  <head> </head>
+  <body>
+    <table>
+      <caption>
+        <h3>No of invisilation for each teacher</h3>
+      </caption>
+      <thead>
+        <tr>
+          <th>Teacher Name</th>
+          <th>Number Of Invisilation</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for teacher in dutyList%}
+        <tr>
+          <td>{{teacher.firstName}} {{teacher.lastName}}</td>
+          <td>{{teacher.count}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+  <html></html>
+</html>
