@@ -89,6 +89,22 @@ def signin(request):
                 courses= course.objects.all()
                 return render(request,"authentication/examCommittee2.html",{'headOfCommittee2':headOfCommittee2})
             
+            headOfCommittee3= teacher.objects.get(Q(isCommittee='3')& Q(isHeadOfCommittee="True"))
+            print(headOfCommittee3.firstName)
+            teachers = teacher.objects.get(userName = username)
+            print(teachers.firstName)
+            if(str(headOfCommittee3.firstName)==str(teachers.firstName)):
+                courses= course.objects.all()
+                return render(request,"authentication/examCommittee3.html",{'headOfCommittee3':headOfCommittee3})
+            
+            headOfCommittee4= teacher.objects.get(Q(isCommittee='4')& Q(isHeadOfCommittee="True"))
+            print(headOfCommittee4.firstName)
+            teachers = teacher.objects.get(userName = username)
+            print(teachers.firstName)
+            if(str(headOfCommittee4.firstName)==str(teachers.firstName)):
+                courses= course.objects.all()
+                return render(request,"authentication/examCommittee4.html",{'headOfCommittee4':headOfCommittee4})
+            
             fname = user.first_name
             return render(request, "authentication/index.html", {'fname': fname})
         else:
@@ -299,7 +315,7 @@ def createRoutine2(request):
             print (subject.courseTitle +"HO")
             if str(subjects) == str(subject.courseTitle):
                 messages.error(request, "Routine Already Created for this Course")
-                return render(request,"authentication/createRoutine1.html")
+                return render(request,"authentication/createRoutine2.html")
             
         Courses=course.objects.get(courseCode=request.POST['course'])
         date=request.POST['date']
@@ -352,3 +368,145 @@ def showRoutine2(request):
         for teacher in routin.teachers.all():
             print(teacher)
     return render(request,'authentication/showRoutine2.html',{'routines':routines})
+
+
+def createRoutine3(request):
+    courses = course.objects.filter(courseCode__gte ='300',courseCode__lte = '399')
+    courses={'courses':courses}
+    if request.method=='POST':
+        if(request.POST['semister']!='3'):
+            messages.success(request,"Sorry You Only Create Routine For 3rd Year Students")
+            return render(request,"authentication/createRoutine3.html")
+        ready = routine.objects.all()
+        for subjects in ready:
+            print(subjects) 
+            subject = course.objects.get(courseCode=request.POST['course'])
+            print (subject.courseTitle +"HO")
+            if str(subjects) == str(subject.courseTitle):
+                messages.error(request, "Routine Already Created for this Course")
+                return render(request,"authentication/createRoutine3.html")
+            
+        Courses=course.objects.get(courseCode=request.POST['course'])
+        date=request.POST['date']
+        start=request.POST['start']
+        end=request.POST['end']
+        students=student.objects.get(year=request.POST['semister'])
+        semister=Semister(semNo=request.POST['semister'])
+        routines=routine(courseCode=Courses,date=date,start=start,end=end)
+        routines.semester= semister
+        routines.save()
+        response='/createRoutine33/'+str(Courses.courseCode)+'/'+str(students.numberOfStudent)
+        return redirect(response)
+    return render(request,"authentication/createRoutine3.html",courses)
+
+
+def createRoutine33(request,id,id2):
+    id2=int(id2)
+    eb= teacher.objects.all()
+    cont={
+        'ob':range(int(id2/12)),
+        'eb':eb
+    }
+    if request.method=='POST':
+        co=course.objects.get(courseCode=int(id))
+        for o in range(int(id2/12)):
+            st="so"+str(o)
+            oo=teacher.objects.get(userName=request.POST.get(st))
+            rou=routine.objects.get(courseCode=co)
+            rou.teachers.add(oo)
+           
+            if(teacherCount.objects.filter(firstName = oo.firstName).exists()):
+                 count = teacherCount.objects.get(firstName = oo.firstName)
+                 count.count = count.count+1
+            else:  
+                count = teacherCount() 
+                count.firstName = oo.firstName
+                count.lastName = oo.lastName
+                count.count = count.count+1
+            count.save()
+        rou=routine.objects.filter(courseCode=co)
+        response='/'
+        return render(request,'authentication/showRoutine3.html')
+    
+    return render(request,'authentication/createRoutine33.html',cont)
+
+
+def showRoutine3(request):
+    routines = routine.objects.filter(semester="3")
+    for routin in routines:
+        for teacher in routin.teachers.all():
+            print(teacher)
+    return render(request,'authentication/showRoutine3.html',{'routines':routines})
+
+
+def createRoutine4(request):
+    courses = course.objects.filter(courseCode__gte ='400',courseCode__lte = '499')
+    courses={'courses':courses}
+    if request.method=='POST':
+        if(request.POST['semister']!='4'):
+            messages.success(request,"Sorry You Only Create Routine For 4th Year Students")
+            return render(request,"authentication/createRoutine4.html")
+        ready = routine.objects.all()
+        for subjects in ready:
+            print(subjects) 
+            subject = course.objects.get(courseCode=request.POST['course'])
+            print (subject.courseTitle +"HO")
+            if str(subjects) == str(subject.courseTitle):
+                messages.error(request, "Routine Already Created for this Course")
+                return render(request,"authentication/createRoutine4.html")
+            
+        Courses=course.objects.get(courseCode=request.POST['course'])
+        date=request.POST['date']
+        start=request.POST['start']
+        end=request.POST['end']
+        students=student.objects.get(year=request.POST['semister'])
+        semister=Semister(semNo=request.POST['semister'])
+        routines=routine(courseCode=Courses,date=date,start=start,end=end)
+        routines.semester= semister
+        routines.save()
+        response='/createRoutine44/'+str(Courses.courseCode)+'/'+str(students.numberOfStudent)
+        return redirect(response)
+    return render(request,"authentication/createRoutine4.html",courses)
+
+
+def createRoutine44(request,id,id2):
+    id2=int(id2)
+    eb= teacher.objects.all()
+    cont={
+        'ob':range(int(id2/12)),
+        'eb':eb
+    }
+    if request.method=='POST':
+        co=course.objects.get(courseCode=int(id))
+        for o in range(int(id2/12)):
+            st="so"+str(o)
+            oo=teacher.objects.get(userName=request.POST.get(st))
+            rou=routine.objects.get(courseCode=co)
+            rou.teachers.add(oo)
+           
+            if(teacherCount.objects.filter(firstName = oo.firstName).exists()):
+                 count = teacherCount.objects.get(firstName = oo.firstName)
+                 count.count = count.count+1
+            else:  
+                count = teacherCount() 
+                count.firstName = oo.firstName
+                count.lastName = oo.lastName
+                count.count = count.count+1
+            count.save()
+        rou=routine.objects.filter(courseCode=co)
+        response='/'
+        return render(request,'authentication/showRoutine4.html')
+    
+    return render(request,'authentication/createRoutine44.html',cont)
+
+
+def showRoutine4(request):
+    routines = routine.objects.filter(semester="4")
+    for routin in routines:
+        for teacher in routin.teachers.all():
+            print(teacher)
+    return render(request,'authentication/showRoutine4.html',{'routines':routines})
+
+def invisilatorsList(request):
+    invisilators = teacherCount.objects.all()
+    return render(request,"authentication/invisilatorList.html",{'invisilators':invisilators})

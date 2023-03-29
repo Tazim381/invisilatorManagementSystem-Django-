@@ -1,0 +1,14 @@
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'chairman.css' %}" />
+  </head>
+  <body>
+    <h1>
+      Hello {{headOfCommittee3.firstName}} You are Head of 3rd Year Exam
+      Committee
+    </h1>
+    <button><a href="/createRoutine3">Create Routine</a></button>
+    <button><a href="/showRoutine3">Show Routine</a></button>
+  </body>
+</html>

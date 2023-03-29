@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <style>
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      form > * {
+        padding: 10px;
+        width: 300px;
+        margin-bottom: 20px;
+      }
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    {% for message in messages %}
+    <div
+      class="alert alert-{{ message.tags }} alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>Message:</strong> {{ message }}
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    <section>
+      <h1>Create Routine For 3rd Year</h1>
+      <form method="POST">
+        {%csrf_token%}
+        <input type="number" name="semister" placeholder="Enter Year No" />
+        <label>Enter date of exam </label>
+        <input type="date" name="date" placeholder="Enter Date" required />
+        <label> Enter Starting Time </label>
+        <input
+          type="time"
+          name="start"
+          placeholder="Enter Starting Time"
+          required
+        />
+        <label>Enter Ending Time</label>
+        <input
+          type="time"
+          name="end"
+          placeholder="Enter Starting Time"
+          required
+        />
+        <select name="course">
+          <option selected disabled>Select Course</option>
+          {%for course in courses%}
+          <option value="{{course.courseCode}}">{{course.courseTitle}}</option>
+          {%endfor%}
+        </select>
+        <button type="submit">Create</button>
+      </form>
+    </section>
+  </body>
+</html>
