@@ -27,7 +27,7 @@
     <form method="POST">
       {%csrf_token%} {%for o in ob%}
       <select name="so{{o}}">
-        <option selected disabled></option>
+        <option selected disabled>Select Teacher</option>
         {%for i in eb%}
         <option value="{{i.userName}}">{{i.firstName}}</option>
         {%endfor%}
